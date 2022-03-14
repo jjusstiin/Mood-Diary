@@ -1,0 +1,353 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.oo{
+  outline: 1px blue solid;
+}
+
+.row{
+  margin-left:0px;
+  margin-right:0px;
+  }  
+
+::-webkit-scrollbar {
+  /*隱藏滾輪*/
+  display: none;
+  } 
+
+body {
+    font-family: 'Microsoft JhengHei', "Microsoft YaHei", STHeiti, sans-serif;
+    background: rgb(252, 238, 238);
+    color: #5f4849;
+  }
+
+  /* btn style */
+  .btn-outline-pink {
+    color: #bf8f90;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid rgba(220, 144, 144);
+  }
+
+  .btn-outline-pink:hover {
+    color: #fff;
+    background-color: rgba(220, 144, 144);
+  }
+
+  /* top-nav */
+  .top-nav {
+    background:linear-gradient(rgba(247,212,212, 0.8), rgba(247,212,212, 0.2));
+    height: 50px;
+    box-shadow:  5px 5px 7px #bf8f90,2px -2px 3px #ffc1c2;
+    backdrop-filter: blur(2px);
+    width: 50%;
+    border-radius: 5px;
+  }
+
+  .static-burger{
+    margin-left: 0.5%;
+    background:linear-gradient(rgba(247,212,212, 0.8), rgba(247,212,212, 0.2));
+    height: 40px;
+    box-shadow:  5px 5px 7px #bf8f90,2px -2px 3px #ffc1c2;
+    backdrop-filter: blur(2px);
+    width: 2.5%;
+    border-radius: 5px;
+  }
+  .left,.right{
+    height: 50px;
+  }
+  .burger{
+    font-size: 20px;
+    color: #EEA2A1;
+  }
+  .burger:hover{
+    color: #ECC4CD;
+  }
+
+  .logo {
+    background-image: url(images/logo.png);
+    background-size: contain;
+    background-repeat: repeat-x;
+    display: block;
+    height: 35px;
+    width: 70px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;
+  } 
+
+  .self-info{
+    width: 200px;
+    color:black;
+  }
+  .self-info-pic{
+    height: 40px;
+    width: 40px;
+    border-radius: 10%;
+  }
+
+  .self-info-name{
+    font-size: 25px;
+  }
+
+  .log-out{
+    width: 90px;
+  }
+
+  /* sign-in */
+  .pink-bg{
+    color: #5f4849;
+    background-color: rgba(247,212,212, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow:  5px 5px 7px #bf8f90,-2px -2px 3px #ffc1c2;
+    border-radius: 5px;
+  }
+
+  .btn-pink {
+    color: #fff;
+    background-color:rgba(220, 144, 144,0.5);
+    border-color: rgba(220, 144, 144);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-pink:hover {
+    color: #fff;
+    outline: solid #c59091 1px;
+  }
+
+  .sign-in-position{
+    top: 70px;
+    left: 60%;
+    width:300px; 
+    height: 350px;
+  }
+
+  /* side-nav */
+  /* .side-nav{
+    width: 80px;
+    background: linear-gradient(90deg,rgba(247,212,212, 0.8), rgba(247,212,212, 0.2));
+    border-radius: 5px;
+    top: 90px;
+    height: 80vh;
+    box-shadow:  5px 5px 7px #bf8f90,-2px -2px 3px #ffc1c2;
+    backdrop-filter: blur(2px);
+    border-radius: 5px;
+  }
+
+  .side-nav-list li{
+    width: 70px;
+    font-size: 12px;
+    border: none;
+  }
+
+  .side-nav-list li:hover{
+    background: linear-gradient(90deg,rgba(220, 144, 144, 0.8), rgba(36, 37, 38, 0));
+  }
+ 
+  .side-nav-list li a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .side-nav-list li a img{
+    width: 50%;
+  }  */
+
+  /*  post addition */
+  .add-article{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 3;
+  } 
+
+  .post-cancel{
+    position: absolute;
+    top: -4%;
+    right: -1.5%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  .article-content{ 
+    background: rgb(255, 228, 228);
+    border-radius: 5px;
+    height: 450px;
+    color: black;
+    overflow: auto;
+  }
+  .article-save{
+    top: 40%;
+    width: 30%;
+    padding: 10px;
+    border: 1px solid rgba(220, 144, 144);
+  }
+  .save-data-or-edit{
+    top: 40%;
+    width: 30%;
+    padding: 10px;
+    border: 1px solid rgba(220, 144, 144);
+  }
+
+  /* add blog */
+  .block{
+    height: 100vh;
+    z-index: 2;
+  }
+
+  .add-blog{
+    width: 85%;
+    height: 80%;
+    top: 14%;
+    backdrop-filter: blur(30px);
+  }
+  .addition{
+    border-color: rgba(220, 144, 144);
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: 900;
+  }
+  .in-delete{
+    top: 30%;
+    display: block;
+    width: 200px;
+    padding: 20px;
+  }
+
+  /* article content */
+  .in-bg{
+    background: transparent;
+    width: 96%;
+  }
+  .art-bg{
+    width: 100%;
+    padding: 10px 5px;
+  }
+  .cancel{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+  }
+  .input-img{
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+  }
+
+
+  /* header */
+  .self{
+    padding: 20px;
+    height: 230px;
+  }
+  
+  .banner{
+    height: 210px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .banner img{
+    position: relative;
+    top: -160px;
+  }
+
+  .advertisement img{
+    width: 100%;
+    border-radius: 8px;
+    height: 210px;
+  }
+
+  /* content */
+  .content{
+    padding: 0 20px;
+  }
+
+  .card img{
+    width: 100%;
+    transition: 0.3s;
+    border-radius: 8px;
+  }
+
+.card{
+  border-radius: 12px;
+  padding: 3%;
+  margin-bottom: 3%;
+  background: #fff;
+  box-shadow: 10px 10px 24px -12px rgba(175, 104, 104, 0.75);
+  transition: 0.3s;
+}
+
+.card:hover{
+  box-shadow: inset 10px 10px 24px -12px rgba(175, 104, 104, 0.75);
+}
+.card:hover img{
+  transform: scale(0.99);
+}
+
+@media screen and (max-width: 958px){
+  .card-columns{
+    column-count: 2;
+  }
+}
+@media screen and (max-width: 420px){
+  .card-columns{
+    column-count: 1;
+  }
+}

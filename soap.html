@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOAP</title>
+  <link rel="stylesheet" href="template/css/bootstrap.min.css">
+  <script src="template/js/jquery.min.js"></script>
+  <script src="template/js/popper.min.js"></script>
+  <script src="template/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- burger-static -->
+  <div class="d-none burger-static">
+    <div class="burger btn" onclick="burger_btn()">☰</div>
+  </div>
+
+  <!-- cellophane -->
+  <div class="cellophane">
+
+    <!-- top-nav -->
+    <div class="top-nav nav-content fixed-top mx-auto align-items-center mt-2">
+
+      <div class="right float-right d-flex align-items-center">
+        <div class="self-info d-flex align-items-center text-decoration-none">
+          <div class="self-info-pic overflow-hidden"><img class="img-fluid" src="./img/1.jpg" alt=""></div>
+          <h2 class="self-info-name ml-3" id="self-info-name">no name</h2>
+        </div>
+
+        <a id="log-sit" class="log-out btn btn-outline-pink mr-2" href="/login.html ">Log out</a>
+      </div>
+
+      <div class="left d-flex align-items-center">
+        <!-- barge logo search sign-in-btn log-out-btn-->
+        <div class="burger btn mr-2" onclick="burger_btn()">☰</div>
+
+        <h1><a id="logo" class="logo" href="#" title="soap">soap</a></h1>
+
+        <!-- <form class="search form-inline">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        </form> -->
+      </div>
+
+    </div>
+
+    <!-- side-nav -->
+    <!-- <div class="side-nav fixed-top d-flex  flex-column align-items-center">
+
+      <div>
+        <h2 class="font-weight-bold mt-4">EXPLORE</h2>
+        <hr>
+      </div>
+
+      <ul class="side-nav-list d-flex flex-column align-items-center">
+        <li class="btn"><a href="##" class="d-flex flex-column align-items-center"><img class="img-fluid mb-1"
+              author="Nikita Golubev" src="images/color-circle.png" alt=""> COLORS</a></li>
+        <li class="mt-3 btn"><a href="##" class="d-flex flex-column align-items-center"><img class="img-fluid mb-2"
+              author="Slidcon" src="images/Slidicon.png" alt=""> EVENTS</a></li>
+        <li class="mt-3 btn"><a href="##" class="d-flex flex-column align-items-center"><img class="img-fluid mb-2"
+              author="Freepik" src="images/Freepik.png" alt=""> DATE</a></li>
+        <li class="mt-3 btn"><a href="##" class="d-flex flex-column align-items-center"><img class="img-fluid mb-2"
+              author="Smashicons" src="images/Smashicons.png" alt=""> COLLECT</a></li>
+      </ul>
+
+    </div> -->
+
+    <!-- article addition -->
+    <div class="add-article" id="add-article"><button class="btn btn-outline-pink">+</button></div>
+
+  </div>
+
+
+  <!-- add blog -->
+  <div class="block w-100 fixed-top d-none" id="block"></div>
+  <div class="add-blog d-none row fixed-top mx-auto pink-bg" id="add-blog">
+    <div class="col-3 d-flex flex-column">
+      <div onclick="addTitle()" class="addition title d-flex btn w-100 justify-content-between align-items-center">
+        <b>Title</b>
+        <div class="btn btn-outline-pink">+</div>
+      </div>
+      <div onclick="addPic()" class="addition picture d-flex btn w-100 justify-content-between align-items-center">
+        <b>Picture</b>
+        <div class="btn btn-outline-pink">+</div>
+      </div>
+      <div onclick="addP(this)" class="addition paragraph d-flex btn w-100 justify-content-between align-items-center">
+        <b>paragraph</b>
+        <div class="btn btn-outline-pink">+</div>
+      </div>
+      <!-- <div onclick="add(this)" class="addition video d-flex btn w-100 justify-content-between align-items-center">
+        <b>Video</b>
+        <div class="btn btn-outline-pink">+</div>
+      </div>
+      <div onclick="add(this)" class="addition music d-flex btn w-100 justify-content-between align-items-center">
+        <b>Music</b>
+        <div class="btn btn-outline-pink">+</div>
+      </div> -->
+      <!-- <div class="addition color d-flex btn w-100 align-items-center">Colors</div>
+      <input type="color"> -->
+    </div>
+
+    <!-- 新增班塊刪除確認  -->
+    <div id="in-delete-ornot"
+      class="in-delete mx-auto fixed-top pink-bg d-none justify-content-around align-items-center">
+      <div id="delete" class="btn btn-pink">Delete</div>
+      <div id="x-delete" class="btn btn-outline-pink">X</div>
+    </div>
+
+    <div class="combination col-9">
+      <div id="article-content" class="article-content mt-2">
+        <div class="mt-3 ml-3">&nbsp; &nbsp; &nbsp; &nbsp;← Add your story......</div>
+      </div>
+    </div>
+
+    <!-- post cancel -->
+    <div id="post-cancel" class="post-cancel btn btn-pink d-flex justify-content-center align-items-center">
+      <div>x</div>
+    </div>
+
+    <!-- articl save -->
+    <div id="article-save">
+      <div class="article-save fixed-top mx-auto d-flex justify-content-around pink-bg">
+        <button id="leave" class="btn btn-pink">leave</button>
+        <button id="save" class="btn btn-pink">save</button>
+        <div class="btn btn-outline-pink" id="save-x">x</div>
+      </div>
+    </div>
+
+    <!-- post -->
+    <div onclick="artPost()" class="article-post btn btn-outline-pink fixed-bottom" id="article-post">Post</div>
+
+    <div id="save-data-or-edit"
+      class="save-data-or-edit mx-auto fixed-top pink-bg d-none justify-content-around align-items-center">
+      <div id="save-data-or-edit-save" class="btn btn-pink mr-2">Keep Editing</div>
+      <div id="save-data-or-edit-delete" class="btn btn-outline-pink">Delete</div>
+    </div>
+
+  </div>
+
+  <!-- header -->
+  <div class="herder">
+    <div class="self row mt-5s">
+      <div class="advertisement col-3"><a href="#"><img src="img/5.jpg" alt=""></a></div>
+      <div class="self-banner col-9">
+        <div class="banner">
+          <a href="#"><img class="w-100" author="" src="img/5.jpg" alt=""></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- content -->
+  <div class="content mt-3">
+    <div class="row">
+      <div class="col-12">
+        <div class="card-columns">
+
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</body>
+
+<script>
+  const selfName = document.getElementById('self-info-name');
+  const numUser = localStorage.getItem(`numUser`);
+  const logSit = document.getElementById('log-sit');
+  const cellophane = document.querySelector('.cellophane');
+  const burger_static = document.querySelector('.burger-static')
+  const inDeleteOrnot = document.getElementById('in-delete-ornot');
+  const addBlog = document.getElementById('add-blog');
+  const block = document.getElementById('block');
+
+  let articleContent = document.getElementById('article-content');
+  let temp = [
+  [
+    {
+        "place": 0,
+        "html": "h2",
+        "text": "大陸冷氣團今明籠罩",
+        "content": "<div class=\"relative d-flex art-bg\"><div class=\"n0 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class=\"n0 xx\">x</div></div><textarea data-place=0 onpropertychange=\"setHeight(this)\" onpaste=\"setHeight(this)\" oninput=\"setHeight(this)\"class=\"storytitle h2 in-bg ml-3 border-0 p-0\" rows=\"1\" cols=\"33\"  placeholder=\"Story Title...\">大陸冷氣團今明籠罩</textarea></div>"
+    },
+    {
+        "place": 1,
+        "html": "img",
+        "text": `<img class="img-fluid" src ="./img/5.jpg"/>`,
+        "content": `<div class="relative d-flex art-bg"><div class="n1 xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n1 xx'>x</div></div><div class="w-100"><div class="result mx-auto w-75" id = "result1" style=" overflow:hidden;"><img class="img-fluid" src ="./img/5.jpg"/></div><input data-place=1 id="pic" class="ml-3 pt-1" type="file" name = "pic" accept = "image/*" onchange = "setImg(this)"/></div></div>`
+    },
+    {
+        "place": 2,
+        "html": "p",
+        "text": "提醒您：拒絕家暴，尊重身體自主權，請撥打110、113\n\n",
+        "content": "<div class='relative d-flex art-bg'><div class=\"n2 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class='n2 xx'>x</div></div><textarea data-place=2 onpropertychange=\"setP(this)\" onpaste=\"setP(this)\" oninput=\"setP(this)\"class=\"story overflow-visible in-bg ml-3 border-0 p-0\" rows=\"2\" cols=\"33\"  placeholder=\"What Happen...\">提醒您：拒絕家暴，尊重身體自主權，請撥打110、113\n\n</textarea></div>"
+    }
+],
+  [
+    {
+        "place": 0,
+        "html": "h2",
+        "text": "客人火腿蛋備註「我要AK」…老闆傻眼",
+        "content": "<div class=\"relative d-flex art-bg\"><div class=\"n0 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class=\"n0 xx\">x</div></div><textarea data-place=0 onpropertychange=\"setHeight(this)\" onpaste=\"setHeight(this)\" oninput=\"setHeight(this)\"class=\"storytitle h2 in-bg ml-3 border-0 p-0\" rows=\"1\" cols=\"33\"  placeholder=\"Story Title...\">客人火腿蛋備註「我要AK」…老闆傻眼</textarea></div>"
+    },
+    {
+        "place": 1,
+        "html": "img",
+        "text": `<img class="img-fluid" src ="./img/5.jpg"/>`,
+        "content":`<div class="relative d-flex art-bg"><div class="n1 xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n1 xx'>x</div></div><div class="w-100"><div class="result mx-auto w-75" id = "result1" style=" overflow:hidden;"><img class="img-fluid" src ="./img/5.jpg"/></div><input data-place=1 id="pic" class="ml-3 pt-1" type="file" name = "pic" accept = "image/*" onchange = "setImg(this)"/></div></div>`
+    },
+    {
+        "place": 2,
+        "html": "p",
+        "text": "對此有內行人解答，「Add Ketchup，AK就是加番茄醬啦。」",
+        "content": "<div class='relative d-flex art-bg'><div class=\"n2 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class='n2 xx'>x</div></div><textarea data-place=2 onpropertychange=\"setP(this)\" onpaste=\"setP(this)\" oninput=\"setP(this)\"class=\"story overflow-visible in-bg ml-3 border-0 p-0\" rows=\"2\" cols=\"33\"  placeholder=\"What Happen...\">對此有內行人解答，「Add Ketchup，AK就是加番茄醬啦。」</textarea></div>"
+    }
+  ],
+  [
+    {
+        "place": 0,
+        "html": "h2",
+        "text": "居民怨「洗澡到一半快冷死」",
+        "content": "<div class=\"relative d-flex art-bg\"><div class=\"n0 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class=\"n0 xx\">x</div></div><textarea data-place=0 onpropertychange=\"setHeight(this)\" onpaste=\"setHeight(this)\" oninput=\"setHeight(this)\"class=\"storytitle h2 in-bg ml-3 border-0 p-0\" rows=\"1\" cols=\"33\"  placeholder=\"Story Title...\">居民怨「洗澡到一半快冷死」</textarea></div>"
+    },
+    {
+        "place": 1,
+        "html": "img",
+        "text": `<img class="img-fluid" src ="./img/5.jpg"/>`,
+        "content": `<div class="relative d-flex art-bg"><div class="n1 xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n1 xx'>x</div></div><div class="w-100"><div class="result mx-auto w-75" id = "result1" style=" overflow:hidden;"><img class="img-fluid" src ="./img/5.jpg"/></div><input data-place=1 id="pic" class="ml-3 pt-1" type="file" name = "pic" accept = "image/*" onchange = "setImg(this)"/></div></div>`
+    },
+    {
+        "place": 2,
+        "html": "p",
+        "text": "「林口大家庭」崩潰直呼「洗澡洗到一半停電，真的快冷死」",
+        "content": "<div class='relative d-flex art-bg'><div class=\"n2 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class='n2 xx'>x</div></div><textarea data-place=2 onpropertychange=\"setP(this)\" onpaste=\"setP(this)\" oninput=\"setP(this)\"class=\"story overflow-visible in-bg ml-3 border-0 p-0\" rows=\"2\" cols=\"33\"  placeholder=\"What Happen...\">「林口大家庭」崩潰直呼「洗澡洗到一半停電，真的快冷死」</textarea></div>"
+    }
+],
+[
+    {
+        "place": 0,
+        "html": "h2",
+        "text": "AK的味道",
+        "content": "<div class=\"relative d-flex art-bg\"><div class=\"n0 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class=\"n0 xx\">x</div></div><textarea data-place=0 onpropertychange=\"setHeight(this)\" onpaste=\"setHeight(this)\" oninput=\"setHeight(this)\"class=\"storytitle h2 in-bg ml-3 border-0 p-0\" rows=\"1\" cols=\"33\"  placeholder=\"Story Title...\">AK的味道</textarea></div>"
+    },
+    {
+        "place": 1,
+        "html": "img",
+        "text": `<img class="img-fluid" src ="./img/5.jpg"/>`,
+        "content":`<div class="relative d-flex art-bg"><div class="n1 xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n1 xx'>x</div></div><div class="w-100"><div class="result mx-auto w-75" id = "result1" style=" overflow:hidden;"><img class="img-fluid" src ="./img/5.jpg"/></div><input data-place=1 id="pic" class="ml-3 pt-1" type="file" name = "pic" accept = "image/*" onchange = "setImg(this)"/></div></div>`
+    },
+    {
+        "place": 2,
+        "html": "p",
+        "text": "嗯!搭起來可以",
+        "content": "<div class='relative d-flex art-bg'><div class=\"n2 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class='n2 xx'>x</div></div><textarea data-place=2 onpropertychange=\"setP(this)\" onpaste=\"setP(this)\" oninput=\"setP(this)\"class=\"story overflow-visible in-bg ml-3 border-0 p-0\" rows=\"2\" cols=\"33\"  placeholder=\"What Happen...\">嗯!搭起來可以</textarea></div>"
+    }
+],
+[
+    {
+        "place": 0,
+        "html": "h2",
+        "text": "貓咪是危險的生物",
+        "content": "<div class=\"relative d-flex art-bg\"><div class=\"n0 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class=\"n0 xx\">x</div></div><textarea data-place=0 onpropertychange=\"setHeight(this)\" onpaste=\"setHeight(this)\" oninput=\"setHeight(this)\"class=\"storytitle h2 in-bg ml-3 border-0 p-0\" rows=\"1\" cols=\"33\"  placeholder=\"Story Title...\">貓咪是危險的生物</textarea></div>"
+    },
+    {
+        "place": 1,
+        "html": "img",
+        "text": `<img class="img-fluid" src ="./img/5.jpg"/>`,
+        "content" : `<div class="relative d-flex art-bg"><div class="n1 xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n1 xx'>x</div></div><div class="w-100"><div class="result mx-auto w-75" id = "result1" style=" overflow:hidden;"><img class="img-fluid" src ="./img/5.jpg"/></div><input data-place=1 id="pic" class="ml-3 pt-1" type="file" name = "pic" accept = "image/*" onchange = "setImg(this)"/></div></div>`
+    },
+    {
+        "place": 2,
+        "html": "p",
+        "text": "檔案要隨時備份!!!",
+        "content": "<div class='relative d-flex art-bg'><div class=\"n2 xx cancel btn btn-pink d-flex justify-content-center align-items-center\"><div class='n2 xx'>x</div></div><textarea data-place=2 onpropertychange=\"setP(this)\" onpaste=\"setP(this)\" oninput=\"setP(this)\"class=\"story overflow-visible in-bg ml-3 border-0 p-0\" rows=\"2\" cols=\"33\"  placeholder=\"What Happen...\">檔案要隨時備份!!!</textarea></div>"
+    }
+]
+];
+//暫時資料庫資料渲染
+  let tcard = document.querySelector('.card-columns');
+  let tcardStr = '';
+  let tinStr='';
+  let ttempDataCount = 0;
+      temp.forEach(function (item, index) {
+        tinStr = '';
+        item.forEach(function(item,index){
+          switch (item.html) {
+            case 'h2':
+              tinStr += `<h2 class='h2'>${item.text}</h2>`
+              break;
+            case 'img':
+              tinStr += `<div id = "result" style="width:100%; overflow:hidden;">${item.text}</div>`
+              break;
+            case 'p':
+              tinStr += `<p>${item.text}</p>`
+              break;
+            default:
+          }
+        })
+        tdate = new Date();
+        tdate = tdate.toLocaleString();
+        tcardStr = `<div class="card-container"><div class="card"><div id="tdc${ttempDataCount}" class="edition btn btn-outline-pink float-right">‧‧‧</div>${tinStr}<div class="date text-right">${tdate}</div></div></div>` + tcardStr;
+        ttempDataCount +=1 ;
+      })
+      tcard.innerHTML = tcardStr;
+//暫時資料庫資料渲染
+
+  let data = [];
+  let item = {};
+
+//套入板塊
+let str = '';
+let count = -1;
+let tempPosition = 5;
+//add Title
+  function addTitle() {
+  count = data.length-1;
+  count += 1;
+  item.place = count;
+  item.html = 'h2';
+  item.text = '';
+  item.content = `<div class="relative d-flex art-bg"><div class="n${count} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class="n${count} xx">x</div></div><textarea data-place=${count} onpropertychange="setHeight(this)" onpaste="setHeight(this)" oninput="setHeight(this)"class="storytitle h2 in-bg ml-3 border-0 p-0" rows="1" cols="33"  placeholder="Story Title..."></textarea></div>`
+  data.push(item);
+  render();
+  item = {};
+  }
+//add picture
+  function addPic() {
+  count = data.length-1;
+  count += 1;
+  item.place = count;
+  item.html = 'img';
+  item.text = '';
+  item.content = `<div class="relative d-flex art-bg"><div class="n${count} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n${count} xx'>x</div></div><div class="w-100"><div class="result mx-auto w-75" id = "result${count}" style=" overflow:hidden;"></div><input data-place=${count} id="pic" class="ml-3 pt-1" type="file" name = "pic" accept = "image/*" onchange = "setImg(this)"/></div></div>`
+  data.push(item);
+  render();
+  item = {};
+  }
+//add paragraph
+  function addP() {
+    count = data.length-1;
+    count += 1;
+    item.place = count;
+    item.html = 'p';
+    item.text = '';
+    item.content = `<div class='relative d-flex art-bg'><div class="n${count} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n${count} xx'>x</div></div><textarea data-place=${count} onpropertychange="setP(this)" onpaste="setP(this)" oninput="setP(this)"class="story overflow-visible in-bg ml-3 border-0 p-0" rows="2" cols="33"  placeholder="What Happen..."></textarea></div>`
+    data.push(item);
+    render();
+    item = {};
+  }
+
+//輸入資料不會消失
+//title
+  function setHeight(obj) {
+    bNum = data[obj.getAttribute('data-place')].place
+    data[obj.getAttribute('data-place')].text = obj.value
+    data[obj.getAttribute('data-place')].content = `<div class="relative d-flex art-bg"><div class="n${bNum} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class="n${bNum} xx">x</div></div><textarea data-place=${bNum} onpropertychange="setHeight(this)" onpaste="setHeight(this)" oninput="setHeight(this)"class="storytitle h2 in-bg ml-3 border-0 p-0" rows="1" cols="33"  placeholder="Story Title...">${obj.value}</textarea></div>`
+    obj.style.height = obj.scrollHeight + 'px';
+  }
+//picture
+  function setImg(obj) {
+    let imgAp = data[obj.getAttribute('data-place')].text;
+    var files = document.querySelector(`[data-place='${$(obj).data('place')}']`).files;
+    console.log(files);
+    if (files.length == 0) {
+      return;
+    }
+    var file = files[0];
+    //把上传的图片显示出来
+    var reader = new FileReader();
+    // 将文件以Data URL形式进行读入页面
+    reader.readAsBinaryString(file);
+    reader.onload = function (f) {
+      var result = $(`#result${$(obj).data('place')}`);
+      var src = "data:" + file.type + ";base64," + window.btoa(this.result);
+      result.append($('<img class="img-fluid" src ="' + src + '"/>'));
+      imgAp += `<img class="img-fluid" src ="${src}"/>`
+      bNum = data[obj.getAttribute('data-place')].place
+      data[obj.getAttribute('data-place')].text = imgAp;
+      data[obj.getAttribute('data-place')].content = `<div class="relative d-flex art-bg"><div class="n${bNum} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n${bNum} xx'>x</div></div><div class="w-100"><div class="result mx-auto w-75" id = "result${bNum}" style=" overflow:hidden;">${imgAp}</div><input data-place=${bNum} id="pic" class="ml-3 pt-1" type="file" name = "pic" accept = "image/*" onchange = "setImg(this)"/></div></div>`
+    }
+  }
+//paragraph
+  function setP(obj) {
+    bNum = data[obj.getAttribute('data-place')].place
+    data[obj.getAttribute('data-place')].text = obj.value
+    data[obj.getAttribute('data-place')].content = `<div class='relative d-flex art-bg'><div class="n${bNum} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n${bNum} xx'>x</div></div><textarea data-place=${bNum} onpropertychange="setP(this)" onpaste="setP(this)" oninput="setP(this)"class="story overflow-visible in-bg ml-3 border-0 p-0" rows="2" cols="33"  placeholder="What Happen...">${obj.value}</textarea></div>`
+    obj.style.height = obj.scrollHeight + 'px';
+  }
+
+//render
+  function render() {
+    data.forEach(function (item, index) {
+      str += item.content;
+    })
+    if(data.length == 0){
+      str =`<div class="mt-3 ml-3">&nbsp; &nbsp; &nbsp; &nbsp;← Add your story......</div>`;
+    }
+    articleContent.innerHTML = str;
+    str = '';
+  }
+
+// delete
+let del = document.getElementById('delete');
+let xDelete = document.getElementById('x-delete');
+let xNum = '';
+  //x-symbol
+  document.addEventListener('click', function (e) {
+    if (e.target.className.includes('xx')) {
+      inDeleteOrnot.setAttribute('class', "in-delete mx-auto fixed-top pink-bg d-flex justify-content-around align-items-center");
+      xNum = e.path[0].className.substring(1, 3).trim();
+    }
+  })
+  //delete btn
+  del.addEventListener('click', function (e) {
+    count -= 1;
+    data = data.filter(function (item) {
+      return item.place != xNum;
+    })
+    let tt = '';
+    data.forEach(function (item, index) {
+      item.place = index;
+      tt = item.text
+      if (item.html == 'h2') {
+        item.content = `<div class="relative d-flex art-bg"><div class="n${index} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class="n${index} xx">x</div></div><textarea data-place=${index} onpropertychange="setHeight(this)" onpaste="setHeight(this)" oninput="setHeight(this)"class="storytitle h2 in-bg ml-3 border-0 p-0" rows="1" cols="33"  placeholder="Story Title...">${tt}</textarea></div>`
+      } else if (item.html == 'img') {
+        item.content =`<div class="relative d-flex art-bg"><div class="n${index} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n${index} xx'>x</div></div><div class="w-100"><div class="result mx-auto w-75" id = "result${index}" style=" overflow:hidden;">${tt}</div><input data-place=${index} id="pic" class="ml-3 pt-1" type="file" name = "pic" accept = "image/*" onchange = "setImg(this)"/></div></div>`
+        console.log(data);
+      } else if (item.html == 'p') {
+        item.content = `<div class='relative d-flex art-bg'><div class="n${index} xx cancel btn btn-pink d-flex justify-content-center align-items-center"><div class='n${index} xx'>x</div></div><textarea data-place=${index} onpropertychange="setP(this)" onpaste="setP(this)" oninput="setP(this)"class="story overflow-visible in-bg ml-3 border-0 p-0" rows="2" cols="33"  placeholder="What Happen...">${tt}</textarea></div>`
+      }
+    })
+    inDeleteOrnot.setAttribute('class', "d-none");
+    render();
+  })
+  //cancel-delete
+  xDelete.addEventListener('click', function (e) {
+    inDeleteOrnot.setAttribute('class', "d-none");
+  })
+
+
+//post
+let card = document.querySelector('.card-columns');
+let tempNum = 1;
+let countAddActicleClick = 0;
+let tempDataCount = 0;
+  function artPost() {
+    //確認data是否有輸入資料
+    testText = '';
+    data.forEach(function (item, index) {
+      testText += item.text; 
+    })
+    if(testText == ''){
+      return;
+    }else{
+      //儲存並初始data
+      temp.splice(tempPosition,1,data)
+      tempPosition = temp.length;
+      data = [];
+      count = -1;
+      cardStr = '';
+      temp.forEach(function (item, index) {
+        inStr = '';
+        item.forEach(function(item,index){
+          switch (item.html) {
+            case 'h2':
+              inStr += `<h2 class='h2'>${item.text}</h2>`
+              break;
+            case 'img':
+              inStr += `<div id = "result" style="width:100%;; overflow:hidden;">${item.text}</div>`
+              break;
+            case 'p':
+              inStr += `<p>${item.text}</p>`
+              break;
+            default:
+          }
+        })
+        date = new Date();
+        ndate = date.toLocaleString();
+        cardStr = `<div class="card-container"><div class="card"><div id="tdc${tempDataCount}" class="edition btn btn-outline-pink float-right">‧‧‧</div>${inStr}<div class="date text-right">${ndate}</div></div></div>` + cardStr;
+        tempDataCount +=1 ;
+      })
+      card.innerHTML = cardStr;
+      render();
+      addBlog.setAttribute('class', "d-none");
+      block.setAttribute('class', "d-none");
+      $("html").css({'overflow': 'scroll'});
+      countAddActicleClick = 0;
+    }
+    tempDataCount = 0; 
+  }
+  //self name
+  if (localStorage.getItem(`user${numUser}`) == null) {
+    selfName.innerHTML = "No Name";
+    logSit.innerText = "Log in";
+  } else {
+    selfName.innerHTML = localStorage.getItem(`user${numUser}`)
+  }
+  // cellphane toggle
+  let signInClcik1 = 1;
+  function burger_btn() {
+    if (signInClcik1 % 2 == 1) {
+      cellophane.setAttribute('class', 'd-none');
+      burger_static.setAttribute('class', 'burger-static fixed-top row d-flex justify-content-center align-items-center')
+    } else {
+      cellophane.setAttribute('class', 'cellophane');
+      burger_static.setAttribute('class', 'burger-static d-none')
+    }
+    signInClcik1 += 1;
+  }
+  //add-article part 
+$('#add-article').click(function () {
+  addArticle();
+})
+function addArticle(ed){
+  let aaTestText ="";
+  data.forEach(function (item, index) {
+      aaTestText += item.text; 
+    })
+  if(countAddActicleClick == 0 ){
+    countAddActicleClick = 1;
+    $("html").css({'overflow': 'hidden'});
+    block.setAttribute('class', "block w-100 fixed-top");
+    addBlog.setAttribute('class', "add-blog row fixed-top mx-auto pink-bg");
+    $('#article-save').hide();
+    $('#post-cancel').click(function () {//post-cancel外面的x  點外面x出現article-save框
+      data.forEach(function (item, index) {
+      aaTestText += item.text; 
+    })
+      if(aaTestText != "" && ed!=1){
+        $('#article-save').show();
+        $('#save-x').click(function () {
+          $('#article-save').hide();
+        })
+        $('#leave').click(function () {
+          count = -1;
+          data = [];
+          render();
+          addBlog.setAttribute('class', "d-none");
+          block.setAttribute('class', "d-none");
+          $("html").css({'overflow': 'scroll'});
+          countAddActicleClick = 0;
+        })
+        $('#save').click(function () {
+          addBlog.setAttribute('class', "d-none");
+          block.setAttribute('class', "d-none");
+          $("html").css({'overflow': 'scroll'});
+          countAddActicleClick = 0; 
+        })
+      }else if(aaTestText == "" ||ed==1){
+        if(ed==1){artPost();}
+        data=[];
+        render();
+      addBlog.setAttribute('class', "d-none");
+        block.setAttribute('class', "d-none");
+        $("html").css({'overflow': 'scroll'});
+        countAddActicleClick = 0;
+        ed=0;
+        console.log(ed);
+      }
+    })
+  }else{
+    if(aaTestText != ""){
+        $('#article-save').show();
+        $('#save-x').click(function () {
+        $('#article-save').hide();
+      })
+      $('#leave').click(function () {
+        data = [];
+        render();
+        addBlog.setAttribute('class', "d-none");
+        block.setAttribute('class', "d-none");
+        $("html").css({'overflow': 'scroll'});
+        countAddActicleClick = 0;
+      })
+      $('#save').click(function () {
+        addBlog.setAttribute('class', "d-none");
+        block.setAttribute('class', "d-none");
+        $("html").css({'overflow': 'scroll'});
+        countAddActicleClick = 0;
+      })
+    }else{
+      addBlog.setAttribute('class', "d-none");
+        block.setAttribute('class', "d-none");
+        $("html").css({'overflow': 'scroll'});
+        countAddActicleClick = 0;
+    }
+  }
+}
+
+//edition
+let saveDataOrEdit = document.getElementById('save-data-or-edit');
+document.addEventListener("click",function(e){
+  if(e.target.id.substr(0,3)=="tdc"){
+  let edTestText = "";
+  let tempTestText = "";
+    data.forEach(function (item, index) {
+      edTestText += item.text; 
+    })
+    temp[e.target.id.substr(3)].forEach(function(item,index){
+    tempTestText += item.text;
+    })
+    if(edTestText != "" && edTestText != tempTestText){
+      tempPosition = temp.length;
+      addArticle();
+      saveDataOrEdit.setAttribute('class', "save-data-or-edit mx-auto fixed-top pink-bg d-flex justify-content-around align-items-center"); 
+      $("#save-data-or-edit-save").click(function(){
+        saveDataOrEdit.setAttribute("class","d-none")
+        countAddActicleClick = 0;
+      })
+      $("#save-data-or-edit-delete").click(function(){
+        tempPosition = e.target.id.substr(3);
+        saveDataOrEdit.setAttribute("class","d-none")
+        data=[];
+        temp[e.target.id.substr(3)].forEach(function(item,index){
+        data.push(item);
+        })
+        render();
+        countAddActicleClick = 0;
+        addArticle();
+      })
+    }else{
+      tempPosition = e.target.id.substr(3);
+      data = [];
+      temp[e.target.id.substr(3)].forEach(function(item,index){
+      data.push(item);
+      })
+      render();
+      countAddActicleClick = 0;
+      addArticle(ed=1);
+    }
+  }
+})
+
+</script>
+
+</html>

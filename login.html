@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="template/css/bootstrap.min.css">
+    <script src="template/js/jquery.min.js"></script>
+    <script src="template/js/popper.min.js"></script>
+    <script src="template/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- sign-in-pad -->
+    <img src="./images/pexels-rebecca-diack-1154723.jpg" author="Rebecca Diack" style="height: 99vh; width: 100%;"
+        alt="">
+
+    <div class="fixed-top w-100 h-100 d-flex justify-content-center align-items-center">
+        <div class="sign-in-position pink-bg">
+            <h1 class="mt-3 h3 mb-3 font-weight-normal" style="text-align: center">LOGIN</h1>
+
+            <form class="form-signin w-75 mx-auto" id="form-signin">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
+                    autofocus="">
+                <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Password" required="">
+
+                <!-- <label><input id="remember" type="checkbox" class="mt-2"> remember</label><br> -->
+
+                <a id="logInBtn" onclick="signIn()" class="mt-2 mb-1 btn btn-pink d-block w-100" href="">Sign in</a>
+                <a href="#" id="forgot_pswd">Forgot password?</a>
+                <hr>
+                <button class="btn btn-pink btn-block" type="button" id="btn-signup">Sign up New Account</button>
+            </form>
+
+            <!-- reset password -->
+            <form action="/reset/password/" class="form-reset mt-3 w-75 mx-auto" id="form-reset">
+                <input type="email" id="resetEmail" class="form-control mb-2" placeholder="Email address" required=""
+                    autofocus="">
+                <button onclick="forgotPassword()" class="btn btn-pink btn-block mb-1" type="submit">Reset Password</button>
+                <a href="#" id="cancel_reset">Back</a>
+            </form>
+
+            <!-- sign up new account -->
+            <form action="" class="form-signup mt-3 w-75 mx-auto" id="form-signup">
+                <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
+                <input type="email" id="user-email" class="form-control mt-2" placeholder="Email address" required
+                    autofocus="">
+                <input type="password" id="user-pass" class="form-control mt-2" placeholder="Password" required
+                    autofocus="">
+                <input type="password" id="user-repeatpass" class="form-control mt-2" placeholder="Repeat Password"
+                    required autofocus="">
+
+                <button onclick="signUp()" class="btn btn-pink btn-block mt-2 mb-1" type="">SignUp</button>
+                <a href="#" id="cancel_signup">Back</a>
+            </form>
+            <br>
+        </div>
+    </div>
+</body>
+
+<script>
+//accountlist
+let accountNum = 0;
+localStorage.setItem(`user${accountNum}`,"Justin Lin");
+localStorage.setItem(`email${accountNum}`,"justinow2000@gmail.com");
+localStorage.setItem(`password${accountNum}`,"justinow2000");
+
+//sign in
+function signIn(){
+    let inputEmail = document.getElementById("inputEmail");
+    let inputPassword = document.getElementById("inputPassword");
+    let logInBtn = document.getElementById("logInBtn");
+    let remember = document.getElementById('remember');
+   
+    for(i = 0;i<=accountNum;i++){
+        let x=0
+        if(localStorage.getItem(`email${i}`) == inputEmail.value && localStorage.getItem(`password${i}`) == inputPassword.value){
+            x++;
+            localStorage.setItem(`numUser`,`${accountNum}`);
+            return logInBtn.href = "/soap.html";
+        }else if(x==0 && i == accountNum){
+            return alert('帳號密碼錯誤')
+        }
+   }
+}
+
+// //remember
+// const rmCheck = document.getElementById("remember"),
+//     emailInput = document.getElementById("email");
+
+// if (localStorage.checkbox && localStorage.checkbox !== "") {
+//   rmCheck.setAttribute("checked", "checked");
+//   emailInput.value = localStorage.username;
+// } else {
+//   rmCheck.removeAttribute("checked");
+//   emailInput.value = "";
+// }
+
+// function lsRememberMe() {
+//   if (rmCheck.checked && emailInput.value !== "") {
+//     localStorage.username = emailInput.value;
+//     localStorage.checkbox = rmCheck.value;
+//   } else {
+//     localStorage.username = "";
+//     localStorage.checkbox = "";
+//   }
+// }
+
+// sgin up
+function signUp(){
+    let userName = document.getElementById("user-name");
+    let emailStr = document.getElementById("user-email");
+    let passwordStr = document.getElementById("user-pass");
+    let repeatPasswordStr = document.getElementById("user-repeatpass");
+    for(i = 0;i<=accountNum;i++){
+        let x=0
+        if(localStorage.getItem(`email${i}`) == emailStr.value){
+            emailStr.value = '';
+            passwordStr.value = '';
+            repeatPasswordStr.value = '';
+            x++;
+            return alert('此帳號已被申請過');
+        }else if(x==0 && passwordStr.value != repeatPasswordStr.value){
+            passwordStr.value = '';
+            repeatPasswordStr.value = '';
+            x++;
+            return alert('密碼錯誤');
+        }else if
+        (x==0 && i == accountNum && userName.value!='' && emailStr.value!='' && passwordStr.value!='' && repeatPasswordStr.value!=''){
+            accountNum += 1;
+            localStorage.setItem(`user${accountNum}`,`${userName.value}`);
+            localStorage.setItem(`email${accountNum}`,`${emailStr.value}`);
+            localStorage.setItem(`password${accountNum}`,`${passwordStr.value}`);
+            userName.value = '';
+            emailStr.value = '';
+            passwordStr.value = '';
+            repeatPasswordStr.value = '';
+            $('#form-signin').show();
+            $('#form-signup').hide();
+            return alert('申請成功');
+        }
+    }
+}
+
+// forgot password
+function forgotPassword(){
+   let resetEmail = document.getElementById('resetEmail');
+   for(i = 0;i<=accountNum;i++){
+        let x=0
+        if(localStorage.getItem(`email${i}`) == resetEmail.value){
+            resetEmail.value = '';
+            $('#form-reset').hide();
+            $('#form-signin').show();
+            x++;
+            return alert('以傳送新密碼至信箱');
+        }else if(x==0 && i == accountNum){
+            return alert('查無此信箱');
+   }
+}}
+
+</script>
+<script>
+    $('#forgot_pswd').click(function () {
+        $('#form-signin').hide();
+        $('#form-reset').show();
+    })
+
+    $('#form-reset').hide();
+    $('#form-signup').hide();
+    $('#cancel_reset').click(function () {
+    document.getElementById("resetEmail").value = '';
+        $('#form-reset').hide();
+        $('#form-signin').show();
+    })
+
+    $('#btn-signup').click(function () {
+        $('#form-signin').hide();
+        $('#form-signup').show();
+    })
+   
+    $('#cancel_signup').click(function () {
+    document.getElementById("user-name").value = '';
+    document.getElementById("user-email").value = '';
+    document.getElementById("user-pass").value = '';
+    document.getElementById("user-repeatpass").value = '';
+        $('#form-signup').hide();
+        $('#form-signin').show();
+    })
+</script>
+</html>

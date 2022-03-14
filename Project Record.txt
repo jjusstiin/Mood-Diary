@@ -1,0 +1,31 @@
+homepage
+header:
+logo icon with connection , searching , homepage icon , friends relationship , fan page , societies
+self profile , function list , messenger , notification , account management
+
+發表
+影片
+圖片
+文章
+討論
+心情小故事
+
+
+ptt (看板)
+把看一群人圍繞看板，並且討論的過程實體化 
+特色
+貼文有分類 心情 新聞 求助 討論
+有人氣值
+留言 有 讚 不贊 一般 的icon
+評論:
+沒有影片 音樂的 顏色 的體驗
+
+
+
+fb
+個人或fan或一群人視為一個人  的介紹心情或照片影片紀錄  
+符合某人外在face如一本書立面有關於這個人，一面寫著關於這個人
+特色
+story 粉絲專頁 社團
+
+YT
